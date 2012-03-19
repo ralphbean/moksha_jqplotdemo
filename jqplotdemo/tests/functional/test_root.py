@@ -24,7 +24,7 @@ class TestRootController(TestController):
     def test_tcpsocket(self):
         """ Make sure the Moksha socket gets injected """
         response = self.app.get('/')
-        assert_true('TCPSocket' in response or 'moksha_amqp_conn' in response)
+        assert_true('WebSocket' in response or 'moksha_conn' in response)
 
     def test_jqplot(self):
         """ Make sure jQuery is injected properly """
@@ -34,7 +34,8 @@ class TestRootController(TestController):
     def test_jqplot(self):
         """ Make sure jqplot is injected and getting called """
         response = self.app.get('/')
-        assert_true('jquery.jqplot.js' in response)
+        assert_true('jquery.jqplot.js' in response or
+                    'jquery.jqplot.min.js' in response)
         assert_true('$.jqplot' in response)
 
     def test_moksha_widget(self):
